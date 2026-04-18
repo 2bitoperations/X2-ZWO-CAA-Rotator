@@ -1,0 +1,1328 @@
+
+# ============================================================
+# intercept started  pid=1810891  t=1776464928.160096
+# ============================================================
+[1776464928.160134] seq=1     IOCTL  fd=4  request=0x80044801  ret=0
+[1776464928.160141] seq=2     IOCTL  fd=4  request=0x90044802  ret=0
+[1776464928.160152] seq=3     IOCTL  fd=6  request=0x80044801  ret=0
+[1776464928.160155] seq=4     IOCTL  fd=6  request=0x90044802  ret=0
+[1776464928.160158] seq=5     CLOSE  fd=6  dev=/dev/hidraw3
+[1776464928.160243] seq=6     HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464928.160576] seq=7     HIDIOCGFEATURE <<  fd=4  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464928.160585] seq=8     HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 08 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464928.160865] seq=9     HIDIOCGFEATURE <<  fd=4  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 08 01 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464928.160877] seq=10    HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 04 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464928.361390] seq=11    HIDIOCGFEATURE <<  fd=4  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 04 01 01 01 45 43 41 41 2d 4d 35 34 00  |.~Z....ECAA-M54.|
+  0010  00                                               |.|
+[1776464928.361523] seq=12    HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 0d 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464928.562011] seq=13    HIDIOCGFEATURE <<  fd=4  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 0d 00 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+  0010  00                                               |.|
+[1776464928.562092] seq=14    HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464928.562462] seq=15    HIDIOCGFEATURE <<  fd=4  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464928.562479] seq=16    HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 03 02 00 0b b8 00 00 00 00 00 00 01 68  |.~Z............h|
+[1776464928.762740] seq=17    HIDIOCSFEATURE >>  fd=4  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 03 00 00 0b b8 00 00 00 00 00 00 01 68  |.~Z............h|
+[1776464928.963230] seq=18    CLOSE  fd=4  dev=/dev/hidraw3
+[1776464929.024029] seq=19    IOCTL  fd=6  request=0x80044801  ret=0
+[1776464929.024070] seq=20    IOCTL  fd=6  request=0x90044802  ret=0
+[1776464929.024103] seq=21    IOCTL  fd=7  request=0x80044801  ret=0
+[1776464929.024109] seq=22    IOCTL  fd=7  request=0x90044802  ret=0
+[1776464929.024116] seq=23    CLOSE  fd=7  dev=/dev/hidraw3
+[1776464929.024193] seq=24    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.024550] seq=25    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.024565] seq=26    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 08 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.024847] seq=27    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 08 01 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.024861] seq=28    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 04 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.225382] seq=29    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 04 01 01 01 45 43 41 41 2d 4d 35 34 00  |.~Z....ECAA-M54.|
+  0010  00                                               |.|
+[1776464929.225520] seq=30    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 04 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.427347] seq=31    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 04 01 01 01 45 43 41 41 2d 4d 35 34 00  |.~Z....ECAA-M54.|
+  0010  00                                               |.|
+[1776464929.427443] seq=32    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 0c 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.628008] seq=33    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 0c 06 00 30 ed a0 cb fa 7c 4d 35 34 00  |.~Z...0....|M54.|
+  0010  00                                               |.|
+[1776464929.628075] seq=34    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 04 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.828742] seq=35    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 04 01 01 01 45 43 41 41 2d 4d 35 34 00  |.~Z....ECAA-M54.|
+  0010  00                                               |.|
+[1776464929.828835] seq=36    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.829299] seq=37    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.829318] seq=38    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.829735] seq=39    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.829981] seq=40    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.830351] seq=41    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.830465] seq=42    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.830920] seq=43    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.830992] seq=44    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 08 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.831474] seq=45    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 08 01 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.831501] seq=46    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464929.831885] seq=47    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464929.831923] seq=48    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 03 01 00 00 1b 77 40 00 00 00 00 01 68  |.~Z.....w@.....h|
+[1776464930.032258] seq=49    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464930.032902] seq=50    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 00 cf 6b 00 00 00 01 68 00  |.~Z......k....h.|
+  0010  00                                               |.|
+[1776464930.233107] seq=51    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464930.233575] seq=52    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 0b f8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464930.433784] seq=53    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464930.434432] seq=54    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 47 58 00 00 00 01 68 00  |.~Z.....GX....h.|
+  0010  00                                               |.|
+[1776464930.634623] seq=55    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464930.635104] seq=56    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 83 e4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464930.835283] seq=57    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464930.835758] seq=58    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 bf 44 00 00 00 01 68 00  |.~Z......D....h.|
+  0010  00                                               |.|
+[1776464931.035948] seq=59    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464931.036352] seq=60    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 fb 08 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464931.236482] seq=61    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464931.236903] seq=62    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 37 30 00 00 00 01 68 00  |.~Z.....70....h.|
+  0010  00                                               |.|
+[1776464931.437054] seq=63    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464931.437478] seq=64    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 72 f4 00 00 00 01 68 00  |.~Z.....r.....h.|
+  0010  00                                               |.|
+[1776464931.637664] seq=65    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464931.638097] seq=66    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 ae 54 00 00 00 01 68 00  |.~Z......T....h.|
+  0010  00                                               |.|
+[1776464931.838270] seq=67    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464931.838717] seq=68    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 ea e0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464932.038914] seq=69    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464932.039318] seq=70    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 26 40 00 00 00 01 68 00  |.~Z.....&@....h.|
+  0010  00                                               |.|
+[1776464932.239597] seq=71    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464932.239944] seq=72    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 62 04 00 00 00 01 68 00  |.~Z.....b.....h.|
+  0010  00                                               |.|
+[1776464932.440118] seq=73    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464932.440541] seq=74    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 9e 2c 00 00 00 01 68 00  |.~Z......,....h.|
+  0010  00                                               |.|
+[1776464932.640749] seq=75    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464932.641249] seq=76    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 d9 8c 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464932.841445] seq=77    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464932.841874] seq=78    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 15 50 00 00 00 01 68 00  |.~Z......P....h.|
+  0010  00                                               |.|
+[1776464933.042766] seq=79    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464933.043136] seq=80    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 51 78 00 00 00 01 68 00  |.~Z.....Qx....h.|
+  0010  00                                               |.|
+[1776464933.243279] seq=81    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464933.243677] seq=82    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 8d 3c 00 00 00 01 68 00  |.~Z......<....h.|
+  0010  00                                               |.|
+[1776464933.443783] seq=83    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464933.444214] seq=84    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 c9 64 00 00 00 01 68 00  |.~Z......d....h.|
+  0010  00                                               |.|
+[1776464933.644357] seq=85    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464933.644750] seq=86    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 05 28 00 00 00 01 68 00  |.~Z......(....h.|
+  0010  00                                               |.|
+[1776464933.845147] seq=87    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464933.845928] seq=88    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 40 88 00 00 00 01 68 00  |.~Z.....@.....h.|
+  0010  00                                               |.|
+[1776464934.046106] seq=89    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464934.046629] seq=90    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 7d 14 00 00 00 01 68 00  |.~Z.....}.....h.|
+  0010  00                                               |.|
+[1776464934.246840] seq=91    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464934.247327] seq=92    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 b8 74 00 00 00 01 68 00  |.~Z......t....h.|
+  0010  00                                               |.|
+[1776464934.447454] seq=93    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464934.447843] seq=94    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 f5 00 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464934.648050] seq=95    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464934.648567] seq=96    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 30 60 00 00 00 01 68 00  |.~Z.....0`....h.|
+  0010  00                                               |.|
+[1776464934.848894] seq=97    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464934.852333] seq=98    HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 6c 24 00 00 00 01 68 00  |.~Z.....l$....h.|
+  0010  00                                               |.|
+[1776464935.052489] seq=99    HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464935.052940] seq=100   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 a9 14 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464935.253115] seq=101   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464935.253558] seq=102   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 e4 d8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464935.453982] seq=103   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464935.454494] seq=104   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 21 00 00 00 00 01 68 00  |.~Z.....!.....h.|
+  0010  00                                               |.|
+[1776464935.654741] seq=105   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464935.655367] seq=106   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 5c c4 00 00 00 01 68 00  |.~Z.....\.....h.|
+  0010  00                                               |.|
+[1776464935.855590] seq=107   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464935.856078] seq=108   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 98 24 00 00 00 01 68 00  |.~Z......$....h.|
+  0010  00                                               |.|
+[1776464936.056293] seq=109   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464936.056835] seq=110   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 d4 4c 00 00 00 01 68 00  |.~Z......L....h.|
+  0010  00                                               |.|
+[1776464936.257063] seq=111   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464936.257846] seq=112   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 10 10 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464936.457996] seq=113   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464936.458478] seq=114   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 4c 38 00 00 00 01 68 00  |.~Z.....L8....h.|
+  0010  00                                               |.|
+[1776464936.658615] seq=115   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464936.659109] seq=116   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 87 fc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464936.859301] seq=117   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464936.859762] seq=118   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 c3 5c 00 00 00 01 68 00  |.~Z......\....h.|
+  0010  00                                               |.|
+[1776464937.059929] seq=119   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464937.060401] seq=120   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 ff e8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464937.260561] seq=121   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464937.260921] seq=122   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 3b 48 00 00 00 01 68 00  |.~Z.....;H....h.|
+  0010  00                                               |.|
+[1776464937.461077] seq=123   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464937.461482] seq=124   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 77 0c 00 00 00 01 68 00  |.~Z.....w.....h.|
+  0010  00                                               |.|
+[1776464937.661639] seq=125   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464937.662114] seq=126   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 b3 34 00 00 00 01 68 00  |.~Z......4....h.|
+  0010  00                                               |.|
+[1776464937.862286] seq=127   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464937.862709] seq=128   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 ee f8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464938.063054] seq=129   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464938.063710] seq=130   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a 2b 20 00 00 00 01 68 00  |.~Z.....+ ....h.|
+  0010  00                                               |.|
+[1776464938.263884] seq=131   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464938.264305] seq=132   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a 66 e4 00 00 00 01 68 00  |.~Z.....f.....h.|
+  0010  00                                               |.|
+[1776464938.464507] seq=133   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464938.465032] seq=134   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a a2 44 00 00 00 01 68 00  |.~Z......D....h.|
+  0010  00                                               |.|
+[1776464938.665187] seq=135   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464938.665613] seq=136   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a de d0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464938.865815] seq=137   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464938.866459] seq=138   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b 1a 30 00 00 00 01 68 00  |.~Z......0....h.|
+  0010  00                                               |.|
+[1776464939.066647] seq=139   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464939.067092] seq=140   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b 55 f4 00 00 00 01 68 00  |.~Z.....U.....h.|
+  0010  00                                               |.|
+[1776464939.267249] seq=141   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464939.267639] seq=142   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b 92 1c 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464939.467792] seq=143   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464939.468292] seq=144   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b cd e0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464939.668460] seq=145   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464939.669172] seq=146   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c 09 40 00 00 00 01 68 00  |.~Z......@....h.|
+  0010  00                                               |.|
+[1776464939.869324] seq=147   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464939.871677] seq=148   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c 45 cc 00 00 00 01 68 00  |.~Z.....E.....h.|
+  0010  00                                               |.|
+[1776464940.071805] seq=149   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464940.072298] seq=150   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c 81 f4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464940.272502] seq=151   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464940.273055] seq=152   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c bd 54 00 00 00 01 68 00  |.~Z......T....h.|
+  0010  00                                               |.|
+[1776464940.473259] seq=153   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464940.473737] seq=154   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c f9 e0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464940.673937] seq=155   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464940.674442] seq=156   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d 35 40 00 00 00 01 68 00  |.~Z.....5@....h.|
+  0010  00                                               |.|
+[1776464940.874599] seq=157   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464940.875081] seq=158   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d 71 04 00 00 00 01 68 00  |.~Z.....q.....h.|
+  0010  00                                               |.|
+[1776464941.075233] seq=159   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464941.076027] seq=160   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d ad 2c 00 00 00 01 68 00  |.~Z......,....h.|
+  0010  00                                               |.|
+[1776464941.276196] seq=161   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464941.276639] seq=162   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d e8 f0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464941.476813] seq=163   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464941.477292] seq=164   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e 25 18 00 00 00 01 68 00  |.~Z.....%.....h.|
+  0010  00                                               |.|
+[1776464941.677520] seq=165   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464941.678007] seq=166   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e 60 dc 00 00 00 01 68 00  |.~Z.....`.....h.|
+  0010  00                                               |.|
+[1776464941.879142] seq=167   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464941.879610] seq=168   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e 9d 04 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464942.079816] seq=169   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464942.080382] seq=170   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e d8 c8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464942.280631] seq=171   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464942.281103] seq=172   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f 14 f0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464942.481360] seq=173   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464942.481851] seq=174   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f 50 b4 00 00 00 01 68 00  |.~Z.....P.....h.|
+  0010  00                                               |.|
+[1776464942.682016] seq=175   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464942.682420] seq=176   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f 8c 14 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464942.882631] seq=177   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464942.883097] seq=178   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f c8 a0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464943.084060] seq=179   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464943.085125] seq=180   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 04 00 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464943.285315] seq=181   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464943.285704] seq=182   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 40 8c 00 00 00 01 68 00  |.~Z.....@.....h.|
+  0010  00                                               |.|
+[1776464943.485858] seq=183   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464943.486310] seq=184   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 7b ec 00 00 00 01 68 00  |.~Z.....{.....h.|
+  0010  00                                               |.|
+[1776464943.686484] seq=185   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464943.686995] seq=186   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 b8 14 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464943.887237] seq=187   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464943.887629] seq=188   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 f3 d8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464944.087836] seq=189   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464944.088298] seq=190   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 2f 38 00 00 00 01 68 00  |.~Z...../8....h.|
+  0010  00                                               |.|
+[1776464944.290362] seq=191   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464944.291926] seq=192   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 6b c4 00 00 00 01 68 00  |.~Z.....k.....h.|
+  0010  00                                               |.|
+[1776464944.492158] seq=193   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464944.492720] seq=194   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 a7 ec 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464944.693017] seq=195   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464944.693475] seq=196   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 e4 78 00 00 00 01 68 00  |.~Z......x....h.|
+  0010  00                                               |.|
+[1776464944.893652] seq=197   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464944.894227] seq=198   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 1f d8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464945.094443] seq=199   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464945.095557] seq=200   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 5b 9c 00 00 00 01 68 00  |.~Z.....[.....h.|
+  0010  00                                               |.|
+[1776464945.295770] seq=201   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464945.296214] seq=202   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 97 c4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464945.496348] seq=203   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464945.496753] seq=204   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 d3 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464945.699967] seq=205   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464945.702321] seq=206   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 10 78 00 00 00 01 68 00  |.~Z......x....h.|
+  0010  00                                               |.|
+[1776464945.902554] seq=207   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464945.903022] seq=208   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 4d 04 00 00 00 01 68 00  |.~Z.....M.....h.|
+  0010  00                                               |.|
+[1776464946.103213] seq=209   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464946.103663] seq=210   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 88 64 00 00 00 01 68 00  |.~Z......d....h.|
+  0010  00                                               |.|
+[1776464946.303811] seq=211   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464946.304232] seq=212   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 c4 f0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464946.504602] seq=213   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464946.505103] seq=214   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 00 50 00 00 00 01 68 00  |.~Z......P....h.|
+  0010  00                                               |.|
+[1776464946.721837] seq=215   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464946.722417] seq=216   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 41 28 00 00 00 01 68 00  |.~Z.....A(....h.|
+  0010  00                                               |.|
+[1776464946.922559] seq=217   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464946.923047] seq=218   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 7c ec 00 00 00 01 68 00  |.~Z.....|.....h.|
+  0010  00                                               |.|
+[1776464947.123221] seq=219   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464947.123679] seq=220   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 b9 14 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464947.323878] seq=221   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464947.324350] seq=222   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 f4 d8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464947.524544] seq=223   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464947.525043] seq=224   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 30 38 00 00 00 01 68 00  |.~Z.....08....h.|
+  0010  00                                               |.|
+[1776464947.725474] seq=225   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464947.726167] seq=226   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 6c c4 00 00 00 01 68 00  |.~Z.....l.....h.|
+  0010  00                                               |.|
+[1776464947.926317] seq=227   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464947.926762] seq=228   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 a8 24 00 00 00 01 68 00  |.~Z......$....h.|
+  0010  00                                               |.|
+[1776464948.127010] seq=229   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464948.127543] seq=230   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 e4 4c 00 00 00 01 68 00  |.~Z......L....h.|
+  0010  00                                               |.|
+[1776464948.327700] seq=231   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464948.328157] seq=232   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 20 10 00 00 00 01 68 00  |.~Z..... .....h.|
+  0010  00                                               |.|
+[1776464948.528371] seq=233   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464948.528804] seq=234   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 5b 70 00 00 00 01 68 00  |.~Z.....[p....h.|
+  0010  00                                               |.|
+[1776464948.728987] seq=235   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464948.732015] seq=236   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 97 fc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464948.932219] seq=237   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464948.932604] seq=238   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 d4 24 00 00 00 01 68 00  |.~Z......$....h.|
+  0010  00                                               |.|
+[1776464949.132792] seq=239   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464949.133266] seq=240   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 0f e7 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464949.335632] seq=241   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464949.336052] seq=242   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 4c d8 00 00 00 01 68 00  |.~Z.....L.....h.|
+  0010  00                                               |.|
+[1776464949.536255] seq=243   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464949.536615] seq=244   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 88 9c 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464949.736764] seq=245   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464949.738042] seq=246   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 c3 fc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464949.938223] seq=247   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464949.938599] seq=248   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 00 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464950.138754] seq=249   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464950.139238] seq=250   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 3b e8 00 00 00 01 68 00  |.~Z.....;.....h.|
+  0010  00                                               |.|
+[1776464950.339422] seq=251   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464950.339807] seq=252   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 78 74 00 00 00 01 68 00  |.~Z.....xt....h.|
+  0010  00                                               |.|
+[1776464950.539974] seq=253   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464950.540452] seq=254   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 b3 d3 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464950.740651] seq=255   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464950.741093] seq=256   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 ef 97 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464950.941280] seq=257   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464950.941756] seq=258   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 2b c0 00 00 00 01 68 00  |.~Z.....+.....h.|
+  0010  00                                               |.|
+[1776464951.141890] seq=259   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464951.142393] seq=260   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 67 84 00 00 00 01 68 00  |.~Z.....g.....h.|
+  0010  00                                               |.|
+[1776464951.342549] seq=261   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464951.343017] seq=262   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 a2 e4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464951.543192] seq=263   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464951.543611] seq=264   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 df 70 00 00 00 01 68 00  |.~Z......p....h.|
+  0010  00                                               |.|
+[1776464951.743782] seq=265   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464951.744245] seq=266   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a 1a d0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464951.944381] seq=267   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464951.944719] seq=268   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a 56 30 00 00 00 01 68 00  |.~Z.....V0....h.|
+  0010  00                                               |.|
+[1776464952.144877] seq=269   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464952.147645] seq=270   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a 92 bc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464952.347825] seq=271   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464952.348319] seq=272   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a ce e4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464952.550559] seq=273   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464952.551020] seq=274   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 0b 70 00 00 00 01 68 00  |.~Z......p....h.|
+  0010  00                                               |.|
+[1776464952.751163] seq=275   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464952.751539] seq=276   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 46 d0 00 00 00 01 68 00  |.~Z.....F.....h.|
+  0010  00                                               |.|
+[1776464952.951663] seq=277   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464952.952237] seq=278   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 65 ac 00 00 00 01 68 00  |.~Z.....e.....h.|
+  0010  00                                               |.|
+[1776464953.152398] seq=279   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.152816] seq=280   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 6e a8 00 00 00 01 68 00  |.~Z.....n.....h.|
+  0010  00                                               |.|
+[1776464953.353004] seq=281   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.353412] seq=282   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 74 e8 00 00 00 01 68 00  |.~Z.....t.....h.|
+  0010  00                                               |.|
+[1776464953.553569] seq=283   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.554153] seq=284   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 1b 77 40 00 00 00 01 68 00  |.~Z.....w@....h.|
+  0010  00                                               |.|
+[1776464953.554223] seq=285   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.554518] seq=286   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 1b 77 40 00 00 00 01 68 00  |.~Z.....w@....h.|
+  0010  00                                               |.|
+[1776464953.554559] seq=287   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.554911] seq=288   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 1b 77 40 00 00 00 01 68 00  |.~Z.....w@....h.|
+  0010  00                                               |.|
+[1776464953.554940] seq=289   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.555233] seq=290   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 1b 77 40 00 00 00 01 68 00  |.~Z.....w@....h.|
+  0010  00                                               |.|
+[1776464953.555247] seq=291   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 08 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.555554] seq=292   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 08 01 00 00 1b 77 40 00 00 00 01 68 00  |.~Z.....w@....h.|
+  0010  00                                               |.|
+[1776464953.555569] seq=293   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.555920] seq=294   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 1b 77 40 00 00 00 01 68 00  |.~Z.....w@....h.|
+  0010  00                                               |.|
+[1776464953.555967] seq=295   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 03 01 00 00 00 bf 68 00 00 00 00 01 68  |.~Z......h.....h|
+[1776464953.756940] seq=296   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.759179] seq=297   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 66 10 00 00 00 01 68 00  |.~Z.....f.....h.|
+  0010  00                                               |.|
+[1776464953.959330] seq=298   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464953.959773] seq=299   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1b 29 e8 00 00 00 01 68 00  |.~Z.....).....h.|
+  0010  00                                               |.|
+[1776464954.159951] seq=300   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464954.160376] seq=301   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a ee 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464954.361296] seq=302   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464954.363408] seq=303   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a b1 fc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464954.563593] seq=304   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464954.564104] seq=305   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a 75 d4 00 00 00 01 68 00  |.~Z.....u.....h.|
+  0010  00                                               |.|
+[1776464954.764246] seq=306   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464954.764792] seq=307   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 1a 3a 10 00 00 00 01 68 00  |.~Z.....:.....h.|
+  0010  00                                               |.|
+[1776464954.965439] seq=308   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464954.966023] seq=309   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 fd e8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464955.166209] seq=310   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464955.167253] seq=311   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 c2 24 00 00 00 01 68 00  |.~Z......$....h.|
+  0010  00                                               |.|
+[1776464955.367444] seq=312   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464955.367900] seq=313   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 85 fc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464955.568081] seq=314   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464955.568538] seq=315   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 4a 38 00 00 00 01 68 00  |.~Z.....J8....h.|
+  0010  00                                               |.|
+[1776464955.768734] seq=316   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464955.774921] seq=317   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 19 0e d8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464955.975076] seq=318   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464955.978969] seq=319   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 d0 bc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464956.179186] seq=320   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464956.182451] seq=321   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 93 cc 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464956.382655] seq=322   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464956.383114] seq=323   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 57 a4 00 00 00 01 68 00  |.~Z.....W.....h.|
+  0010  00                                               |.|
+[1776464956.583310] seq=324   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464956.583787] seq=325   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 18 1b e0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464956.783966] seq=326   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464956.784341] seq=327   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 df b8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464956.984486] seq=328   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464956.984929] seq=329   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 a3 f4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464957.185108] seq=330   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464957.185580] seq=331   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 68 94 00 00 00 01 68 00  |.~Z.....h.....h.|
+  0010  00                                               |.|
+[1776464957.388087] seq=332   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464957.396027] seq=333   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 17 2b 40 00 00 00 01 68 00  |.~Z.....+@....h.|
+  0010  00                                               |.|
+[1776464957.596226] seq=334   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464957.596688] seq=335   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 ed 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464957.796880] seq=336   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464957.797257] seq=337   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 b1 c4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464958.000040] seq=338   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464958.007523] seq=339   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 74 d3 00 00 00 01 68 00  |.~Z.....t.....h.|
+  0010  00                                               |.|
+[1776464958.207721] seq=340   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464958.209675] seq=341   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 16 37 1c 00 00 00 01 68 00  |.~Z.....7.....h.|
+  0010  00                                               |.|
+[1776464958.409837] seq=342   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464958.410297] seq=343   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 fa 90 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464958.610792] seq=344   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464958.611323] seq=345   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 bf 30 00 00 00 01 68 00  |.~Z......0....h.|
+  0010  00                                               |.|
+[1776464958.811517] seq=346   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464958.811967] seq=347   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 82 a4 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464959.012196] seq=348   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464959.012687] seq=349   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 47 44 00 00 00 01 68 00  |.~Z.....GD....h.|
+  0010  00                                               |.|
+[1776464959.212878] seq=350   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464959.219036] seq=351   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 15 0b 7f 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464959.419268] seq=352   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464959.419770] seq=353   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 cd c8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464959.619966] seq=354   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464959.620446] seq=355   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 92 04 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464959.820633] seq=356   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464959.821115] seq=357   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 55 dc 00 00 00 01 68 00  |.~Z.....U.....h.|
+  0010  00                                               |.|
+[1776464960.021340] seq=358   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464960.021803] seq=359   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 14 1a 18 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464960.222052] seq=360   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464960.223021] seq=361   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 de b8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464960.423242] seq=362   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464960.423721] seq=363   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 a2 90 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464960.623986] seq=364   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464960.624578] seq=365   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 66 cc 00 00 00 01 68 00  |.~Z.....f.....h.|
+  0010  00                                               |.|
+[1776464960.824807] seq=366   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464960.825161] seq=367   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 13 2a a4 00 00 00 01 68 00  |.~Z.....*.....h.|
+  0010  00                                               |.|
+[1776464961.025306] seq=368   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464961.025802] seq=369   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 ee e0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464961.225971] seq=370   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464961.226919] seq=371   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 b3 80 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464961.427099] seq=372   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464961.427581] seq=373   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 76 f4 00 00 00 01 68 00  |.~Z.....v.....h.|
+  0010  00                                               |.|
+[1776464961.627904] seq=374   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464961.632102] seq=375   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 12 3b 94 00 00 00 01 68 00  |.~Z.....;.....h.|
+  0010  00                                               |.|
+[1776464961.832294] seq=376   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464961.832733] seq=377   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 fe 40 00 00 00 01 68 00  |.~Z......@....h.|
+  0010  00                                               |.|
+[1776464962.032945] seq=378   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464962.033438] seq=379   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 c2 18 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464962.233720] seq=380   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464962.234366] seq=381   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 86 54 00 00 00 01 68 00  |.~Z......T....h.|
+  0010  00                                               |.|
+[1776464962.434669] seq=382   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464962.435105] seq=383   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 4a f4 00 00 00 01 68 00  |.~Z.....J.....h.|
+  0010  00                                               |.|
+[1776464962.635279] seq=384   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464962.635701] seq=385   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 11 0e 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464962.835891] seq=386   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464962.836327] seq=387   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 d3 08 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464963.036540] seq=388   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464963.037043] seq=389   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 97 44 00 00 00 01 68 00  |.~Z......D....h.|
+  0010  00                                               |.|
+[1776464963.237289] seq=390   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464963.237747] seq=391   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 5b 1c 00 00 00 01 68 00  |.~Z.....[.....h.|
+  0010  00                                               |.|
+[1776464963.437956] seq=392   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464963.438301] seq=393   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 10 1f 58 00 00 00 01 68 00  |.~Z......X....h.|
+  0010  00                                               |.|
+[1776464963.638429] seq=394   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464963.638841] seq=395   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f e3 f8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464963.838969] seq=396   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464963.839381] seq=397   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f a7 d0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464964.039575] seq=398   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464964.040075] seq=399   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f 6c 0b 00 00 00 01 68 00  |.~Z.....l.....h.|
+  0010  00                                               |.|
+[1776464964.240271] seq=400   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464964.240749] seq=401   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0f 2f e4 00 00 00 01 68 00  |.~Z...../.....h.|
+  0010  00                                               |.|
+[1776464964.440921] seq=402   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464964.441320] seq=403   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e f4 20 00 00 00 01 68 00  |.~Z...... ....h.|
+  0010  00                                               |.|
+[1776464964.642446] seq=404   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464964.644238] seq=405   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e b7 f7 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464964.844398] seq=406   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464964.844885] seq=407   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e 7c 34 00 00 00 01 68 00  |.~Z.....|4....h.|
+  0010  00                                               |.|
+[1776464965.045118] seq=408   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464965.045559] seq=409   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e 40 0c 00 00 00 01 68 00  |.~Z.....@.....h.|
+  0010  00                                               |.|
+[1776464965.245759] seq=410   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464965.246212] seq=411   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0e 04 48 00 00 00 01 68 00  |.~Z......H....h.|
+  0010  00                                               |.|
+[1776464965.446408] seq=412   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464965.446873] seq=413   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d c8 1f 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464965.647082] seq=414   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464965.652020] seq=415   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d 8c 5c 00 00 00 01 68 00  |.~Z......\....h.|
+  0010  00                                               |.|
+[1776464965.852174] seq=416   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464965.852543] seq=417   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d 4f 6c 00 00 00 01 68 00  |.~Z.....Ol....h.|
+  0010  00                                               |.|
+[1776464966.052673] seq=418   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464966.053090] seq=419   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0d 13 a8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464966.256045] seq=420   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464966.264014] seq=421   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c d6 b8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464966.464173] seq=422   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464966.464580] seq=423   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c 99 00 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464966.664748] seq=424   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464966.665250] seq=425   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c 5d 3c 00 00 00 01 68 00  |.~Z.....]<....h.|
+  0010  00                                               |.|
+[1776464966.865462] seq=426   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464966.866052] seq=427   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0c 21 14 00 00 00 01 68 00  |.~Z.....!.....h.|
+  0010  00                                               |.|
+[1776464967.068048] seq=428   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464967.068843] seq=429   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b e4 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464967.269023] seq=430   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464967.271141] seq=431   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b a9 28 00 00 00 01 68 00  |.~Z......(....h.|
+  0010  00                                               |.|
+[1776464967.471359] seq=432   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464967.472954] seq=433   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b 6c 9c 00 00 00 01 68 00  |.~Z.....l.....h.|
+  0010  00                                               |.|
+[1776464967.673196] seq=434   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464967.673724] seq=435   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0b 30 74 00 00 00 01 68 00  |.~Z.....0t....h.|
+  0010  00                                               |.|
+[1776464967.873945] seq=436   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464967.874366] seq=437   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a f3 e8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464968.074519] seq=438   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464968.074898] seq=439   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a b8 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464968.275747] seq=440   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464968.276773] seq=441   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a 7c c4 00 00 00 01 68 00  |.~Z.....|.....h.|
+  0010  00                                               |.|
+[1776464968.476962] seq=442   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464968.477343] seq=443   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a 40 9c 00 00 00 01 68 00  |.~Z.....@.....h.|
+  0010  00                                               |.|
+[1776464968.677479] seq=444   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464968.677908] seq=445   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 0a 04 d8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464968.878025] seq=446   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464968.878450] seq=447   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 c8 b0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464969.078651] seq=448   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464969.079120] seq=449   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 8d 50 00 00 00 01 68 00  |.~Z......P....h.|
+  0010  00                                               |.|
+[1776464969.279936] seq=450   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464969.280404] seq=451   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 50 c4 00 00 00 01 68 00  |.~Z.....P.....h.|
+  0010  00                                               |.|
+[1776464969.480537] seq=452   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464969.481000] seq=453   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 09 15 64 00 00 00 01 68 00  |.~Z......d....h.|
+  0010  00                                               |.|
+[1776464969.681168] seq=454   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464969.681598] seq=455   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 d9 a0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464969.881754] seq=456   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464969.882237] seq=457   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 9d 78 00 00 00 01 68 00  |.~Z......x....h.|
+  0010  00                                               |.|
+[1776464970.082445] seq=458   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464970.082896] seq=459   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 61 b4 00 00 00 01 68 00  |.~Z.....a.....h.|
+  0010  00                                               |.|
+[1776464970.283153] seq=460   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464970.284327] seq=461   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 08 26 54 00 00 00 01 68 00  |.~Z.....&T....h.|
+  0010  00                                               |.|
+[1776464970.484470] seq=462   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464970.485226] seq=463   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 e9 c8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464970.685331] seq=464   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464970.685711] seq=465   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 ae 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464970.888063] seq=466   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464970.896016] seq=467   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 71 14 00 00 00 01 68 00  |.~Z.....q.....h.|
+  0010  00                                               |.|
+[1776464971.096213] seq=468   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464971.096678] seq=469   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 07 33 5c 00 00 00 01 68 00  |.~Z.....3\....h.|
+  0010  00                                               |.|
+[1776464971.296864] seq=470   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464971.297246] seq=471   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 f7 97 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464971.500035] seq=472   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464971.500940] seq=473   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 ba a8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464971.701097] seq=474   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464971.701546] seq=475   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 7f 48 00 00 00 01 68 00  |.~Z......H....h.|
+  0010  00                                               |.|
+[1776464971.901666] seq=476   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464971.902052] seq=477   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 43 84 00 00 00 01 68 00  |.~Z.....C.....h.|
+  0010  00                                               |.|
+[1776464972.102180] seq=478   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464972.102653] seq=479   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 06 07 5c 00 00 00 01 68 00  |.~Z......\....h.|
+  0010  00                                               |.|
+[1776464972.302820] seq=480   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464972.303191] seq=481   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 cb 97 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464972.503916] seq=482   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464972.505001] seq=483   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 8f 70 00 00 00 01 68 00  |.~Z......p....h.|
+  0010  00                                               |.|
+[1776464972.705228] seq=484   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464972.705724] seq=485   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 53 ab 00 00 00 01 68 00  |.~Z.....S.....h.|
+  0010  00                                               |.|
+[1776464972.905924] seq=486   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464972.906336] seq=487   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 05 17 84 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464973.106500] seq=488   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464973.107011] seq=489   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 db c0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464973.307226] seq=490   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464973.307569] seq=491   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 a0 60 00 00 00 01 68 00  |.~Z......`....h.|
+  0010  00                                               |.|
+[1776464973.507746] seq=492   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464973.508178] seq=493   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 63 d4 00 00 00 01 68 00  |.~Z.....c.....h.|
+  0010  00                                               |.|
+[1776464973.708369] seq=494   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464973.710329] seq=495   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 04 28 74 00 00 00 01 68 00  |.~Z.....(t....h.|
+  0010  00                                               |.|
+[1776464973.910532] seq=496   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464973.911104] seq=497   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 eb e8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464974.111297] seq=498   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464974.111785] seq=499   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 b0 88 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464974.314734] seq=500   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464974.316811] seq=501   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 73 34 00 00 00 01 68 00  |.~Z.....s4....h.|
+  0010  00                                               |.|
+[1776464974.517003] seq=502   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464974.517401] seq=503   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 03 37 0c 00 00 00 01 68 00  |.~Z.....7.....h.|
+  0010  00                                               |.|
+[1776464974.717549] seq=504   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464974.717960] seq=505   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 fb ac 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464974.918118] seq=506   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464974.918574] seq=507   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 bf e8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464975.118807] seq=508   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464975.119277] seq=509   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 83 c0 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464975.319503] seq=510   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464975.319922] seq=511   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 47 fc 00 00 00 01 68 00  |.~Z.....G.....h.|
+  0010  00                                               |.|
+[1776464975.520136] seq=512   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464975.525354] seq=513   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 02 0b 0c 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464975.725674] seq=514   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464975.726081] seq=515   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 ce 80 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464975.926215] seq=516   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464975.926656] seq=517   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 93 20 00 00 00 01 68 00  |.~Z...... ....h.|
+  0010  00                                               |.|
+[1776464976.128466] seq=518   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464976.128922] seq=519   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 56 94 00 00 00 01 68 00  |.~Z.....V.....h.|
+  0010  00                                               |.|
+[1776464976.329084] seq=520   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464976.329481] seq=521   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 01 1b 34 00 00 00 01 68 00  |.~Z......4....h.|
+  0010  00                                               |.|
+[1776464976.529689] seq=522   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464976.530174] seq=523   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 00 de a8 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464976.730356] seq=524   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464976.730788] seq=525   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 00 cd db 00 00 00 01 68 00  |.~Z...........h.|
+  0010  00                                               |.|
+[1776464976.930955] seq=526   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464976.931369] seq=527   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 00 c6 70 00 00 00 01 68 00  |.~Z......p....h.|
+  0010  00                                               |.|
+[1776464977.131578] seq=528   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464977.132087] seq=529   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 01 00 00 00 c0 30 00 00 00 01 68 00  |.~Z......0....h.|
+  0010  00                                               |.|
+[1776464977.332366] seq=530   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464977.332881] seq=531   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464977.333174] seq=532   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464977.333455] seq=533   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464977.333498] seq=534   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 02 03 00 00 00 00 00 00 00 00 00 00 00  |.~Z.............|
+[1776464977.333827] seq=535   HIDIOCGFEATURE <<  fd=6  dev=/dev/hidraw3  len=17
+  0000  01 7e 5a 03 00 00 00 00 bf 68 00 00 00 01 68 00  |.~Z......h....h.|
+  0010  00                                               |.|
+[1776464977.333854] seq=536   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 03 02 00 0b b8 00 00 00 00 00 00 01 68  |.~Z............h|
+[1776464977.534065] seq=537   HIDIOCSFEATURE >>  fd=6  dev=/dev/hidraw3  len=16
+  0000  03 7e 5a 03 00 00 0b b8 00 00 00 00 00 00 01 68  |.~Z............h|
+[1776464977.734394] seq=538   CLOSE  fd=6  dev=/dev/hidraw3

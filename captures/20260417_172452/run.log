@@ -1,0 +1,17 @@
+SDK version: 1, 5, 9, 0
+Found 1 CAA rotator(s)
+  [0] ID=0    Name="CAA"  MaxStep=65000
+Opening ID 0 ... OK
+Firmware: 1.1.1
+Serial:   060030EDA0CBFA7C
+Type:     CAA-M54
+Current position: 4.90 deg
+Moving to 180.0 deg ...
+Waiting for motion to complete ....................................................................................................................
+Position after move: 180.00 deg
+Moving back to original position (4.90 deg) ...
+Waiting for motion to complete ....................................................................................................................
+Position restored: 4.90 deg
+Closed.
+
+Phase 1 PASS — ZWO library + device communication confirmed.
