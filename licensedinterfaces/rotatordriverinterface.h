@@ -6,6 +6,11 @@
 #include "imagingsystem/hardware/interfaces/licensed/linkinterface.h"
 #include "imagingsystem/hardware/interfaces/licensed/deviceinfointerface.h"
 #include "imagingsystem/hardware/interfaces/licensed/driverinfointerface.h"
+#elif X2_FLAT_INCLUDES
+#include "driverrootinterface.h"
+#include "linkinterface.h"
+#include "deviceinfointerface.h"
+#include "driverinfointerface.h"
 #else
 #include "../../licensedinterfaces/driverrootinterface.h"
 #include "../../licensedinterfaces/linkinterface.h"
