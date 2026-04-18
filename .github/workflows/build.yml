@@ -54,13 +54,15 @@ jobs:
         if: runner.os == 'macOS'
         run: make BUILD_NUMBER=${{ steps.ver.outputs.n }}
 
-      # ── Windows (MSYS2 / MinGW64) ──────────────────────────────────────────
+      # ── Windows (pre-installed MSYS2 / MinGW64) ───────────────────────────
+      # Use the MSYS2 already on the runner (C:\msys64) to avoid download failures.
       - name: Setup MSYS2
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: false
+          location: 'C:\'
           install: >-
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-hidapi
