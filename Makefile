@@ -13,7 +13,9 @@ ifneq (,$(findstring MINGW,$(UNAME_S)))
   TARGET_LIB  = libx2caarotator.dll
   OS_FLAG     = -DSB_WIN_BUILD
   # hidapi via MSYS2: pacman -S mingw-w64-x86_64-hidapi
-  HIDAPI_CFLAGS  =
+  # MSYS2 puts headers at /mingw64/include/hidapi/hidapi.h; pkg-config only
+  # returns -I/mingw64/include (parent), so we point directly at the subdir.
+  HIDAPI_CFLAGS  = -I/mingw64/include/hidapi
   HIDAPI_LIBS    = -lhidapi
   LDFLAGS     = -shared -static-libstdc++ -static-libgcc
   STRIP_FLAGS =
