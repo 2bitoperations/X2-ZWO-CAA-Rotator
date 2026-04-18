@@ -55,22 +55,20 @@ jobs:
         run: make BUILD_NUMBER=${{ steps.ver.outputs.n }}
 
       # ── Windows (pre-installed MSYS2 / MinGW64) ───────────────────────────
-      # Use the MSYS2 already on the runner (C:\msys64) to avoid download failures.
-      - name: Setup MSYS2
+      # The windows-latest runner ships MSYS2 at C:\msys64 — use it directly
+      # rather than the setup-msys2 action (which tries to download a new copy).
+      - name: Install deps (Windows)
         if: runner.os == 'Windows'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: false
-          location: 'C:\'
-          install: >-
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-hidapi
-            make
+        shell: 'C:\msys64\usr\bin\bash.exe -l {0}'
+        env:
+          MSYSTEM: MINGW64
+        run: pacman -Sy --noconfirm --needed mingw-w64-x86_64-gcc mingw-w64-x86_64-hidapi make
 
       - name: Build (Windows)
         if: runner.os == 'Windows'
-        shell: msys2 {0}
+        shell: 'C:\msys64\usr\bin\bash.exe -l {0}'
+        env:
+          MSYSTEM: MINGW64
         run: make BUILD_NUMBER=${{ steps.ver.outputs.n }}
 
       # ── Package ────────────────────────────────────────────────────────────
@@ -88,7 +86,9 @@ jobs:
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
-        shell: msys2 {0}
+        shell: 'C:\msys64\usr\bin\bash.exe -l {0}'
+        env:
+          MSYSTEM: MINGW64
         run: |
           mkdir dist
           cp "${{ matrix.artifact }}" dist/
