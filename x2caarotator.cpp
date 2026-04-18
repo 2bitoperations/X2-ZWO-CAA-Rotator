@@ -5,13 +5,15 @@
 #include "x2caarotator.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 
 #define LOCK_IO  X2MutexLocker _lock(m_pIOMutex)
 
-// INI keys (all scoped to X2CAART_INI_SECTION + instance index suffix)
-#define KEY_DEV_PATH    "DevicePath"
+// INI keys (section = X2CAART_INI_SECTION)
+#define KEY_SERIAL      "DeviceSerial"
+#define KEY_PATH        "DevicePath"
 #define KEY_BEEP        "Beep"
 #define KEY_REVERSE     "Reverse"
 #define KEY_MAX_ANGLE   "MaxAngle"
@@ -46,10 +48,12 @@ X2CAARotator::X2CAARotator(
     , m_bReverse    (false)
     , m_dMaxAngle   (360.0)
 {
-    m_szFirmware[0] = '\0';
-    m_szType[0]     = '\0';
-    m_szSerial[0]   = '\0';
-    m_szDevPath[0]  = '\0';
+    m_szFirmware[0]     = '\0';
+    m_szType[0]         = '\0';
+    m_szSerial[0]       = '\0';
+    m_szDevPath[0]      = '\0';
+    m_szStoredSerial[0] = '\0';
+    m_szStoredPath[0]   = '\0';
 
     loadSettings();
 }
@@ -57,7 +61,6 @@ X2CAARotator::X2CAARotator(
 X2CAARotator::~X2CAARotator()
 {
     terminateLink();
-
     // X2 framework owns all interface pointers — do not delete them
 }
 
@@ -105,18 +108,70 @@ void X2CAARotator::deviceInfoDetailedDescription(BasicStringInterface& str) cons
 
 void X2CAARotator::deviceInfoFirmwareVersion(BasicStringInterface& str)
 {
-    if (m_szFirmware[0])
-        str = m_szFirmware;
-    else
-        str = "unknown";
+    str = m_szFirmware[0] ? m_szFirmware : "unknown";
 }
 
 void X2CAARotator::deviceInfoModel(BasicStringInterface& str)
 {
-    if (m_szType[0])
-        str = m_szType;
+    str = m_szType[0] ? m_szType : "ZWO CAA";
+}
+
+// ── Device selection ──────────────────────────────────────────────────────────
+
+void X2CAARotator::makeDeviceLabel(const CAADeviceEntry& e,
+                                   char* buf, int bufLen)
+{
+    // e.g. "CAA-M54 [SN: 060030EDA0CBFA7C]  /dev/hidraw0"
+    // or   "CAA [no serial]  /dev/hidraw0"
+    char snPart[32];
+    if (e.serial[0])
+        snprintf(snPart, sizeof(snPart), "[SN: %s]", e.serial);
     else
-        str = "ZWO CAA";
+        snprintf(snPart, sizeof(snPart), "[no serial]");
+
+    const char* typePart = e.type[0] ? e.type : "ZWO CAA";
+
+    snprintf(buf, (size_t)bufLen, "%s %s  %s", typePart, snPart, e.path);
+}
+
+int X2CAARotator::chooseDevice(char* pathOut, int pathOutLen) const
+{
+    CAADeviceEntry devs[X2CAART_MAX_DEVICES];
+    int n = CAARotator::enumerateDevices(devs, X2CAART_MAX_DEVICES);
+    if (n == 0)
+        return CAART_ERR_NODEV;
+
+    // 1. Match by stored serial number (preferred — stable across USB reconnects)
+    if (m_szStoredSerial[0]) {
+        for (int i = 0; i < n; i++) {
+            if (strcmp(devs[i].serial, m_szStoredSerial) == 0) {
+                snprintf(pathOut, (size_t)pathOutLen, "%s", devs[i].path);
+                logDebug(2, "chooseDevice: matched by serial %s → %s",
+                         m_szStoredSerial, devs[i].path);
+                return CAART_OK;
+            }
+        }
+        logDebug(1, "chooseDevice: serial %s not found, trying path hint",
+                 m_szStoredSerial);
+    }
+
+    // 2. Match by stored path (hint — may be stale after USB reconnect)
+    if (m_szStoredPath[0]) {
+        for (int i = 0; i < n; i++) {
+            if (strcmp(devs[i].path, m_szStoredPath) == 0) {
+                snprintf(pathOut, (size_t)pathOutLen, "%s", devs[i].path);
+                logDebug(2, "chooseDevice: matched by path %s", devs[i].path);
+                return CAART_OK;
+            }
+        }
+        logDebug(1, "chooseDevice: path %s not found, using first device",
+                 m_szStoredPath);
+    }
+
+    // 3. Fall back to first available device
+    snprintf(pathOut, (size_t)pathOutLen, "%s", devs[0].path);
+    logDebug(2, "chooseDevice: using first device %s", devs[0].path);
+    return CAART_OK;
 }
 
 // ── LinkInterface ─────────────────────────────────────────────────────────────
@@ -128,16 +183,10 @@ int X2CAARotator::establishLink()
     if (m_bLinked)
         return SB_OK;
 
-    // Determine the hidraw path to open
-    char path[64];
-    if (m_szDevPath[0]) {
-        snprintf(path, sizeof(path), "%s", m_szDevPath);
-    } else {
-        int rc = CAARotator::findDevice(path, (int)sizeof(path));
-        if (rc != CAART_OK) {
-            logDebug(1, "establishLink: no ZWO CAA device found (rc=%d)", rc);
-            return ERR_COMMNOLINK;
-        }
+    char path[256];
+    if (chooseDevice(path, (int)sizeof(path)) != CAART_OK) {
+        logDebug(1, "establishLink: no ZWO CAA device found");
+        return ERR_COMMNOLINK;
     }
 
     int rc = m_dev.open(path);
@@ -146,7 +195,7 @@ int X2CAARotator::establishLink()
         return ERR_COMMOPENING;
     }
 
-    // Read device information (flushes buffer internally)
+    // Read device information (includes buffer flush internally)
     char fw[16], type[16], serial[24];
     rc = m_dev.getInfo(fw, type, serial);
     if (rc == CAART_OK) {
@@ -155,7 +204,7 @@ int X2CAARotator::establishLink()
         snprintf(m_szSerial,   sizeof(m_szSerial),   "%s", serial);
     }
 
-    // Read live state (position, beep, reverse, maxAngle)
+    // Read live state
     CAARotator::State s;
     rc = m_dev.getState(s);
     if (rc == CAART_OK) {
@@ -166,6 +215,14 @@ int X2CAARotator::establishLink()
     }
 
     snprintf(m_szDevPath, sizeof(m_szDevPath), "%s", path);
+
+    // Persist the serial and path for next connect
+    if (m_szSerial[0]) {
+        snprintf(m_szStoredSerial, sizeof(m_szStoredSerial), "%s", m_szSerial);
+        snprintf(m_szStoredPath,   sizeof(m_szStoredPath),   "%s", path);
+        saveSettings();
+    }
+
     m_bLinked = true;
 
     logDebug(2, "establishLink: %s  fw=%s  type=%s  sn=%s  pos=%.4f  max=%.0f",
@@ -259,7 +316,6 @@ int X2CAARotator::isCompleteRotatorGoto(bool& bComplete) const
         return SB_OK;
     }
 
-    // Cast away const so we can update state (matches example plugin pattern)
     X2CAARotator* pMe = const_cast<X2CAARotator*>(this);
 
     CAARotator::State s;
@@ -271,7 +327,8 @@ int X2CAARotator::isCompleteRotatorGoto(bool& bComplete) const
 
     pMe->m_dCurrentPosition = s.angle;
     bComplete = !s.isMoving;
-    logDebug(3, "isCompleteRotatorGoto: angle=%.4f  moving=%d", s.angle, (int)s.isMoving);
+    logDebug(3, "isCompleteRotatorGoto: angle=%.4f  moving=%d",
+             s.angle, (int)s.isMoving);
     return SB_OK;
 }
 
@@ -289,33 +346,28 @@ void X2CAARotator::loadSettings()
     if (!m_pIniUtil)
         return;
 
-    char defPath[64] = "";
-    char pathBuf[64];
-    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_DEV_PATH,
-                           defPath, pathBuf, (int)sizeof(pathBuf));
-    snprintf(m_szDevPath, sizeof(m_szDevPath), "%s", pathBuf);
+    char buf[256];
 
-    char beepBuf[8] = "1";
-    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_BEEP,
-                           "1", beepBuf, (int)sizeof(beepBuf));
-    m_bBeep = (beepBuf[0] == '1');
+    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_SERIAL,
+                           "", m_szStoredSerial, (int)sizeof(m_szStoredSerial));
 
-    char revBuf[8] = "0";
-    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_REVERSE,
-                           "0", revBuf, (int)sizeof(revBuf));
-    m_bReverse = (revBuf[0] == '1');
+    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_PATH,
+                           "", buf, (int)sizeof(buf));
+    snprintf(m_szStoredPath, sizeof(m_szStoredPath), "%s", buf);
 
-    char maxBuf[16] = "360";
-    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_MAX_ANGLE,
-                           "360", maxBuf, (int)sizeof(maxBuf));
-    m_dMaxAngle = atof(maxBuf);
+    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_BEEP, "1", buf, 8);
+    m_bBeep = (buf[0] == '1');
+
+    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_REVERSE, "0", buf, 8);
+    m_bReverse = (buf[0] == '1');
+
+    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_MAX_ANGLE, "360", buf, 16);
+    m_dMaxAngle = atof(buf);
     if (m_dMaxAngle < 1.0 || m_dMaxAngle > 360.0)
         m_dMaxAngle = 360.0;
 
-    char dbgBuf[8] = "0";
-    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_DEBUG_LEVEL,
-                           "0", dbgBuf, (int)sizeof(dbgBuf));
-    m_nDebugLevel = atoi(dbgBuf);
+    m_pIniUtil->readString(X2CAART_INI_SECTION, KEY_DEBUG_LEVEL, "0", buf, 8);
+    m_nDebugLevel = atoi(buf);
 }
 
 void X2CAARotator::saveSettings()
@@ -323,10 +375,11 @@ void X2CAARotator::saveSettings()
     if (!m_pIniUtil)
         return;
 
-    m_pIniUtil->writeString(X2CAART_INI_SECTION, KEY_DEV_PATH, m_szDevPath);
+    m_pIniUtil->writeString(X2CAART_INI_SECTION, KEY_SERIAL, m_szStoredSerial);
+    m_pIniUtil->writeString(X2CAART_INI_SECTION, KEY_PATH,   m_szStoredPath);
 
     char buf[16];
-    snprintf(buf, sizeof(buf), "%d", m_bBeep ? 1 : 0);
+    snprintf(buf, sizeof(buf), "%d", m_bBeep    ? 1 : 0);
     m_pIniUtil->writeString(X2CAART_INI_SECTION, KEY_BEEP, buf);
 
     snprintf(buf, sizeof(buf), "%d", m_bReverse ? 1 : 0);
@@ -343,9 +396,7 @@ void X2CAARotator::applySettingsToDevice()
 {
     if (!m_bLinked)
         return;
-
     LOCK_IO;
-
     m_dev.setBeep(m_bBeep);
     m_dev.setReverse(m_bReverse);
     m_dev.setMaxDegree(m_dMaxAngle);
@@ -373,21 +424,46 @@ int X2CAARotator::execModalSettingsDialog()
     if (!dx)
         return ERR_POINTER;
 
-    // Populate read-only info fields
-    dx->setPropertyString("lblDevPathVal",  "text", m_szDevPath[0] ? m_szDevPath : "(auto)");
-    dx->setPropertyString("lblFirmwareVal", "text", m_szFirmware[0] ? m_szFirmware : "—");
-    dx->setPropertyString("lblSerialVal",   "text", m_szSerial[0]   ? m_szSerial   : "—");
-    dx->setPropertyString("lblTypeVal",     "text", m_szType[0]     ? m_szType     : "—");
+    // ── Populate device selector ──────────────────────────────────────────────
+    CAADeviceEntry devs[X2CAART_MAX_DEVICES];
+    int nDevs = CAARotator::enumerateDevices(devs, X2CAART_MAX_DEVICES);
 
-    // Populate editable settings
+    // Always add a "(auto-detect)" option first
+    dx->comboBoxAppendString("comboDevice", "(auto-detect)");
+    int selectedIdx = 0;  // default to auto-detect
+
+    for (int i = 0; i < nDevs; i++) {
+        char label[320];
+        makeDeviceLabel(devs[i], label, (int)sizeof(label));
+        dx->comboBoxAppendString("comboDevice", label);
+
+        // Pre-select if serial matches stored preference
+        if (m_szStoredSerial[0] && strcmp(devs[i].serial, m_szStoredSerial) == 0)
+            selectedIdx = i + 1;
+        // Or if path matches and no serial preference
+        else if (!m_szStoredSerial[0] && m_szStoredPath[0] &&
+                 strcmp(devs[i].path, m_szStoredPath) == 0)
+            selectedIdx = i + 1;
+    }
+    dx->setCurrentIndex("comboDevice", selectedIdx);
+
+    // ── Populate info fields ──────────────────────────────────────────────────
+    if (m_bLinked) {
+        dx->setPropertyString("lblDevPathVal",  "text", m_szDevPath[0]  ? m_szDevPath  : "(auto)");
+        dx->setPropertyString("lblFirmwareVal", "text", m_szFirmware[0] ? m_szFirmware : "—");
+        dx->setPropertyString("lblSerialVal",   "text", m_szSerial[0]   ? m_szSerial   : "—");
+        dx->setPropertyString("lblTypeVal",     "text", m_szType[0]     ? m_szType     : "—");
+    } else {
+        dx->setPropertyString("lblDevPathVal",  "text", "(not connected)");
+        dx->setPropertyString("lblFirmwareVal", "text", "—");
+        dx->setPropertyString("lblSerialVal",   "text", "—");
+        dx->setPropertyString("lblTypeVal",     "text", "—");
+    }
+
+    // ── Populate settings ─────────────────────────────────────────────────────
     dx->setChecked("chkBeep",    m_bBeep);
     dx->setChecked("chkReverse", m_bReverse);
-
-    // Max angle combo: 0 = 180°, 1 = 360°
-    dx->setCurrentIndex("comboMaxAngle",
-                        (m_dMaxAngle <= 180.5) ? 0 : 1);
-
-    // Debug level combo: index = level (0–3)
+    dx->setCurrentIndex("comboMaxAngle", (m_dMaxAngle <= 180.5) ? 0 : 1);
     dx->setCurrentIndex("comboDebug", m_nDebugLevel);
 
     nErr = ui->exec(bPressedOK);
@@ -395,21 +471,30 @@ int X2CAARotator::execModalSettingsDialog()
         return nErr;
 
     if (bPressedOK) {
-        bool beepNew    = dx->isChecked("chkBeep");
-        bool reverseNew = dx->isChecked("chkReverse");
-        int  maxIdx     = dx->currentIndex("comboMaxAngle");
-        int  dbgIdx     = dx->currentIndex("comboDebug");
+        // ── Read device selection ─────────────────────────────────────────────
+        int devIdx = dx->currentIndex("comboDevice");
+        if (devIdx == 0) {
+            // Auto-detect: clear stored preference
+            m_szStoredSerial[0] = '\0';
+            m_szStoredPath[0]   = '\0';
+        } else if (devIdx - 1 < nDevs) {
+            const CAADeviceEntry& chosen = devs[devIdx - 1];
+            snprintf(m_szStoredSerial, sizeof(m_szStoredSerial), "%s", chosen.serial);
+            snprintf(m_szStoredPath,   sizeof(m_szStoredPath),   "%s", chosen.path);
+        }
 
-        double maxNew   = (maxIdx == 0) ? 180.0 : 360.0;
-
-        m_bBeep       = beepNew;
-        m_bReverse    = reverseNew;
-        m_dMaxAngle   = maxNew;
-        m_nDebugLevel = dbgIdx;
+        // ── Read other settings ───────────────────────────────────────────────
+        m_bBeep       = dx->isChecked("chkBeep");
+        m_bReverse    = dx->isChecked("chkReverse");
+        m_dMaxAngle   = (dx->currentIndex("comboMaxAngle") == 0) ? 180.0 : 360.0;
+        m_nDebugLevel = dx->currentIndex("comboDebug");
 
         saveSettings();
         applySettingsToDevice();
-        logDebug(2, "settings saved: beep=%d reverse=%d max=%.0f debug=%d",
+
+        logDebug(2,
+                 "settings saved: serial=%s path=%s beep=%d reverse=%d max=%.0f debug=%d",
+                 m_szStoredSerial, m_szStoredPath,
                  (int)m_bBeep, (int)m_bReverse, m_dMaxAngle, m_nDebugLevel);
     }
 

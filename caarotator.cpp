@@ -3,15 +3,12 @@
  *
  * Protocol reference: PROTOCOL.md
  *
- * All communication is via HID feature reports on /dev/hidrawN:
- *   HIDIOCSFEATURE(16) : host → device (16-byte output report)
- *   HIDIOCGFEATURE(17) : device → host (17-byte input report)
+ * All communication is via HID feature reports through hidapi:
+ *   hid_send_feature_report(dev, buf, 16) : host → device
+ *   hid_get_feature_report(dev, buf, 17)  : device → host
  *
- * Output format:  [0x03][0x7E][0x5A][CMD][params 0-11][0x00]
+ * Output format:  [0x03][0x7E][0x5A][CMD][params 0-11]
  * Input  format:  [0x01][0x7E][0x5A][echo][data 0-12]
- *
- * Platform note: HID ioctl is Linux-only.  On other platforms every method
- * returns CAART_ERR_UNSUPPORTED.
  */
 
 #include "caarotator.h"
@@ -20,39 +17,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef SB_LINUX_BUILD
-#include <fcntl.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <sys/ioctl.h>
-#include <linux/hidraw.h>
-#include <time.h>
+#ifdef _WIN32
+#  include <windows.h>
+static void sleepMs(int ms) { Sleep((DWORD)ms); }
+#else
+#  include <unistd.h>
+static void sleepMs(int ms) { usleep((useconds_t)ms * 1000u); }
 #endif
 
-// ── protocol constants ────────────────────────────────────────────────────────
+// ── Protocol constants ────────────────────────────────────────────────────────
 #define REPORT_OUT  0x03u
 #define REPORT_IN   0x01u
 #define MAGIC0      0x7Eu
 #define MAGIC1      0x5Au
 
-// CMD bytes
 #define CMD_QUERY       0x02u
 #define CMD_MOVE        0x03u
 #define CMD_SET_BEEP    0x07u
 #define CMD_SET_REVERSE 0x09u
 
-// Query sub-registers
 #define REG_STATE    0x03u
 #define REG_STATUS2  0x08u
 #define REG_INFO     0x04u
 #define REG_SERIAL   0x0Cu
 
-// MOVE sub-types
 #define MOVE_ABSOLUTE 0x01u
 #define MOVE_STOP     0x02u
 #define MOVE_CONFIG   0x00u
 
-// Angle encoding: BE32, units = 1/10000 degree
+// ── Angle encoding ────────────────────────────────────────────────────────────
+
 static unsigned int encodeAngle(double deg)
 {
     long long v = (long long)(deg * 10000.0 + 0.5);
@@ -74,25 +68,12 @@ static unsigned short decodeU16(const unsigned char* buf, int offset)
     return (unsigned short)(((unsigned int)buf[offset] << 8) | buf[offset+1]);
 }
 
-// ── sleep helper ──────────────────────────────────────────────────────────────
-static void sleepMs(int ms)
-{
-#ifdef SB_LINUX_BUILD
-    struct timespec ts;
-    ts.tv_sec  = ms / 1000;
-    ts.tv_nsec = (ms % 1000) * 1000000L;
-    nanosleep(&ts, NULL);
-#else
-    (void)ms;
-#endif
-}
-
 // ════════════════════════════════════════════════════════════════════════════
 // CAARotator
 // ════════════════════════════════════════════════════════════════════════════
 
 CAARotator::CAARotator()
-    : m_fd(-1)
+    : m_dev(NULL)
     , m_cachedMaxAngle(360)
 {
     m_path[0] = '\0';
@@ -105,151 +86,165 @@ CAARotator::~CAARotator()
 
 bool CAARotator::isOpen() const
 {
-    return m_fd >= 0;
+    return m_dev != NULL;
 }
 
-// ── Device discovery ──────────────────────────────────────────────────────────
+// ── Device enumeration ────────────────────────────────────────────────────────
 
-int CAARotator::findDevice(char* pathOut, int maxLen)
+int CAARotator::enumerateDevices(CAADeviceEntry* out, int maxCount)
 {
-#ifndef SB_LINUX_BUILD
-    (void)pathOut; (void)maxLen;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    // Walk /sys/class/hidraw/hidrawN/device/uevent looking for
-    //   HID_ID=0003:000003C3:00001F20
-    // Sysfs always reports VID/PID in uppercase hex zero-padded to 8 digits.
-    const char* sysBase = "/sys/class/hidraw";
-    DIR* dir = opendir(sysBase);
-    if (!dir)
-        return CAART_ERR_NODEV;
+    if (!out || maxCount <= 0)
+        return 0;
 
-    int found = 0;
-    struct dirent* ent;
-    while ((ent = readdir(dir)) != NULL && !found) {
-        if (ent->d_name[0] == '.')
-            continue;
+    struct hid_device_info* devs = hid_enumerate(CAA_VID, CAA_PID);
+    if (!devs)
+        return 0;
 
-        char ueventPath[512];
-        snprintf(ueventPath, sizeof(ueventPath),
-                 "%s/%s/device/uevent", sysBase, ent->d_name);
+    int count = 0;
+    for (struct hid_device_info* d = devs; d && count < maxCount; d = d->next) {
+        CAADeviceEntry& e = out[count];
+        memset(&e, 0, sizeof(e));
+        snprintf(e.path, sizeof(e.path), "%s", d->path ? d->path : "");
 
-        FILE* f = fopen(ueventPath, "r");
-        if (!f)
-            continue;
+        // Briefly open to read serial and firmware info
+        hid_device* dev = hid_open_path(d->path);
+        if (dev) {
+            // GET_STATE flush first (clears stale buffer)
+            unsigned char buf[17];
+            buf[0] = REPORT_IN;
+            memset(buf + 1, 0, 16);
+            buf[3] = REG_STATE;
+            // Send QUERY REG_STATE
+            unsigned char out16[16];
+            memset(out16, 0, 16);
+            out16[0] = REPORT_OUT;
+            out16[1] = MAGIC0;
+            out16[2] = MAGIC1;
+            out16[3] = CMD_QUERY;
+            out16[4] = REG_STATE;
+            hid_send_feature_report(dev, out16, 16);
+            buf[0] = REPORT_IN;
+            hid_get_feature_report(dev, buf, 17);
 
-        char line[256];
-        while (fgets(line, sizeof(line), f)) {
-            // Match: HID_ID=0003:000003C3:00001F20
-            unsigned int bus, vid, pid;
-            if (sscanf(line, "HID_ID=%04X:%08X:%08X", &bus, &vid, &pid) == 3) {
-                if (vid == CAA_VID && pid == CAA_PID) {
-                    snprintf(pathOut, (size_t)maxLen, "/dev/%s", ent->d_name);
-                    found = 1;
-                }
-                break;
+            // GET_INFO
+            memset(out16 + 4, 0, 12);
+            out16[4] = REG_INFO;
+            hid_send_feature_report(dev, out16, 16);
+            unsigned char infoResp[17];
+            infoResp[0] = REPORT_IN;
+            for (int i = 0; i < 8; i++) {
+                hid_get_feature_report(dev, infoResp, 17);
+                if (infoResp[3] == REG_INFO) break;
+                sleepMs(50);
             }
+            if (infoResp[3] == REG_INFO) {
+                snprintf(e.firmware, sizeof(e.firmware), "%d.%d.%d",
+                         (int)infoResp[4], (int)infoResp[5], (int)infoResp[6]);
+                memcpy(e.type, infoResp + 8, 8);
+                e.type[8] = '\0';
+            }
+
+            // GET_SERIAL (flush state first)
+            out16[4] = REG_STATE;
+            hid_send_feature_report(dev, out16, 16);
+            buf[0] = REPORT_IN;
+            hid_get_feature_report(dev, buf, 17);
+
+            out16[4] = REG_SERIAL;
+            hid_send_feature_report(dev, out16, 16);
+            unsigned char snResp[17];
+            snResp[0] = REPORT_IN;
+            for (int i = 0; i < 8; i++) {
+                hid_get_feature_report(dev, snResp, 17);
+                if (snResp[3] == REG_SERIAL) break;
+                sleepMs(50);
+            }
+            if (snResp[3] == REG_SERIAL) {
+                for (int i = 0; i < 8; i++)
+                    snprintf(e.serial + i*2, 3, "%02X", (unsigned int)snResp[4+i]);
+                e.serial[16] = '\0';
+            }
+
+            hid_close(dev);
         }
-        fclose(f);
+
+        count++;
     }
-    closedir(dir);
-    return found ? CAART_OK : CAART_ERR_NODEV;
-#endif
+
+    hid_free_enumeration(devs);
+    return count;
 }
 
 // ── Connection ────────────────────────────────────────────────────────────────
 
 int CAARotator::open(const char* path)
 {
-#ifndef SB_LINUX_BUILD
-    (void)path;
-    return CAART_ERR_UNSUPPORTED;
-#else
     close();
-    int fd = ::open(path, O_RDWR);
-    if (fd < 0)
+
+    hid_device* dev = hid_open_path(path);
+    if (!dev)
         return CAART_ERR_OPEN;
-    m_fd = fd;
+
+    m_dev = dev;
     snprintf(m_path, sizeof(m_path), "%s", path);
     return CAART_OK;
-#endif
 }
 
 void CAARotator::close()
 {
-#ifdef SB_LINUX_BUILD
-    if (m_fd >= 0) {
-        ::close(m_fd);
-        m_fd = -1;
+    if (m_dev) {
+        hid_close(m_dev);
+        m_dev = NULL;
         m_path[0] = '\0';
     }
-#endif
 }
 
 // ── HID I/O primitives ────────────────────────────────────────────────────────
 
 void CAARotator::buildOut(unsigned char* buf16,
-                          unsigned char  reg,
-                          const unsigned char* payload,
-                          int payloadLen)
+                          unsigned char  cmd,
+                          const unsigned char* params,
+                          int paramsLen)
 {
     memset(buf16, 0, 16);
     buf16[0] = REPORT_OUT;
     buf16[1] = MAGIC0;
     buf16[2] = MAGIC1;
-    buf16[3] = reg;
-    if (payload && payloadLen > 0) {
-        int n = payloadLen;
-        if (n > 12) n = 12;
-        memcpy(buf16 + 4, payload, (size_t)n);
+    buf16[3] = cmd;
+    if (params && paramsLen > 0) {
+        int n = paramsLen < 12 ? paramsLen : 12;
+        memcpy(buf16 + 4, params, (size_t)n);
     }
 }
 
 int CAARotator::sendReport(const unsigned char* buf16)
 {
-#ifndef SB_LINUX_BUILD
-    (void)buf16;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
-    // HIDIOCSFEATURE(n) is _IOC(_IOC_WRITE|_IOC_READ, 'H', 0x06, n)
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), (void*)buf16);
+    int rc = hid_send_feature_report(m_dev, buf16, 16);
     return (rc < 0) ? CAART_ERR_IO : CAART_OK;
-#endif
 }
 
-int CAARotator::query(unsigned char reg,
-                      const unsigned char* payload, int payloadLen,
-                      unsigned char* resp17)
+int CAARotator::query(unsigned char reg, unsigned char* resp17)
 {
-#ifndef SB_LINUX_BUILD
-    (void)reg; (void)payload; (void)payloadLen; (void)resp17;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
 
+    // Send CMD_QUERY with the register number in byte[4]
     unsigned char out[16];
-    // CMD_QUERY (0x02) in byte[3]; register in byte[4]
-    buildOut(out, CMD_QUERY, NULL, 0);
+    buildOut(out, CMD_QUERY);
     out[4] = reg;
-    if (payload && payloadLen > 0) {
-        int n = payloadLen;
-        if (n > 11) n = 11;
-        memcpy(out + 5, payload, (size_t)n);
-    }
 
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), out);
+    int rc = hid_send_feature_report(m_dev, out, 16);
     if (rc < 0)
         return CAART_ERR_IO;
 
-    // Retry HIDIOCGFEATURE up to 8 times waiting for echo byte to match.
-    // Some registers (INFO, SERIAL) update the echo quickly but leave data
-    // bytes stale — GET_STATE flushes that; see PROTOCOL.md timing note.
+    // Retry hid_get_feature_report until echo byte matches.
+    // GET_INFO and GET_SERIAL are slow registers — device updates echo quickly
+    // but leaves data bytes stale from the previous command (see PROTOCOL.md).
     resp17[0] = REPORT_IN;
     for (int i = 0; i < 8; i++) {
-        rc = ioctl(m_fd, HIDIOCGFEATURE(17), resp17);
+        rc = hid_get_feature_report(m_dev, resp17, 17);
         if (rc < 0)
             return CAART_ERR_IO;
         if (resp17[3] == reg)
@@ -257,79 +252,47 @@ int CAARotator::query(unsigned char reg,
         sleepMs(50);
     }
     return CAART_ERR_TIMEOUT;
-#endif
-}
-
-int CAARotator::querySimple(unsigned char reg, unsigned char* resp17)
-{
-    return query(reg, NULL, 0, resp17);
 }
 
 // ── Register-level commands ───────────────────────────────────────────────────
 
-int CAARotator::cmdGetState(unsigned char* resp17)
-{
-    return querySimple(REG_STATE, resp17);
-}
-
-int CAARotator::cmdGetStatus2(unsigned char* resp17)
-{
-    return querySimple(REG_STATUS2, resp17);
-}
-
-int CAARotator::cmdGetInfo(unsigned char* resp17a, unsigned char* /*resp17b*/)
-{
-    return querySimple(REG_INFO, resp17a);
-}
-
-int CAARotator::cmdGetSerial(unsigned char* resp17)
-{
-    return querySimple(REG_SERIAL, resp17);
-}
+int CAARotator::cmdGetState(unsigned char* resp17)   { return query(REG_STATE,   resp17); }
+int CAARotator::cmdGetStatus2(unsigned char* resp17) { return query(REG_STATUS2, resp17); }
+int CAARotator::cmdGetInfo(unsigned char* resp17)    { return query(REG_INFO,    resp17); }
+int CAARotator::cmdGetSerial(unsigned char* resp17)  { return query(REG_SERIAL,  resp17); }
 
 int CAARotator::cmdMoveTo(float degrees)
 {
-#ifndef SB_LINUX_BUILD
-    (void)degrees;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
 
+    unsigned int  ang      = encodeAngle((double)degrees);
     unsigned short maxAngle = m_cachedMaxAngle;
-    unsigned int ang = encodeAngle((double)degrees);
+
     unsigned char out[16];
     memset(out, 0, 16);
-    out[0] = REPORT_OUT;
-    out[1] = MAGIC0;
-    out[2] = MAGIC1;
-    out[3] = CMD_MOVE;
-    out[4] = MOVE_ABSOLUTE;
-    out[5] = 0x00;
+    out[0]  = REPORT_OUT;
+    out[1]  = MAGIC0;
+    out[2]  = MAGIC1;
+    out[3]  = CMD_MOVE;
+    out[4]  = MOVE_ABSOLUTE;
+    out[5]  = 0x00;
     // bytes 6..9: target angle BE32
     out[6]  = (unsigned char)((ang >> 24) & 0xFF);
     out[7]  = (unsigned char)((ang >> 16) & 0xFF);
     out[8]  = (unsigned char)((ang >>  8) & 0xFF);
     out[9]  = (unsigned char)( ang        & 0xFF);
-    out[10] = 0x00;
-    out[11] = 0x00;
-    out[12] = 0x00;
-    out[13] = 0x00;
     // bytes 14..15: max_angle_u16 BE
     out[14] = (unsigned char)((maxAngle >> 8) & 0xFF);
     out[15] = (unsigned char)( maxAngle       & 0xFF);
 
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), out);
+    int rc = hid_send_feature_report(m_dev, out, 16);
     return (rc < 0) ? CAART_ERR_IO : CAART_OK;
-#endif
 }
 
 int CAARotator::cmdStop()
 {
-#ifndef SB_LINUX_BUILD
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
     unsigned char out[16];
     memset(out, 0, 16);
@@ -338,18 +301,13 @@ int CAARotator::cmdStop()
     out[2] = MAGIC1;
     out[3] = CMD_MOVE;
     out[4] = MOVE_STOP;
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), out);
+    int rc = hid_send_feature_report(m_dev, out, 16);
     return (rc < 0) ? CAART_ERR_IO : CAART_OK;
-#endif
 }
 
 int CAARotator::cmdSetBeep(bool enabled)
 {
-#ifndef SB_LINUX_BUILD
-    (void)enabled;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
     unsigned char out[16];
     memset(out, 0, 16);
@@ -358,18 +316,13 @@ int CAARotator::cmdSetBeep(bool enabled)
     out[2] = MAGIC1;
     out[3] = CMD_SET_BEEP;
     out[4] = enabled ? 0x01u : 0x00u;
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), out);
+    int rc = hid_send_feature_report(m_dev, out, 16);
     return (rc < 0) ? CAART_ERR_IO : CAART_OK;
-#endif
 }
 
 int CAARotator::cmdSetReverse(bool enabled)
 {
-#ifndef SB_LINUX_BUILD
-    (void)enabled;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
     unsigned char out[16];
     memset(out, 0, 16);
@@ -378,18 +331,13 @@ int CAARotator::cmdSetReverse(bool enabled)
     out[2] = MAGIC1;
     out[3] = CMD_SET_REVERSE;
     out[4] = enabled ? 0x01u : 0x00u;
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), out);
+    int rc = hid_send_feature_report(m_dev, out, 16);
     return (rc < 0) ? CAART_ERR_IO : CAART_OK;
-#endif
 }
 
 int CAARotator::cmdSetMaxDeg(float degrees)
 {
-#ifndef SB_LINUX_BUILD
-    (void)degrees;
-    return CAART_ERR_UNSUPPORTED;
-#else
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
     unsigned short maxAngle = (unsigned short)((int)degrees);
     unsigned char out[16];
@@ -398,33 +346,26 @@ int CAARotator::cmdSetMaxDeg(float degrees)
     out[1]  = MAGIC0;
     out[2]  = MAGIC1;
     out[3]  = CMD_MOVE;
-    out[4]  = MOVE_CONFIG;  // 0x00
-    out[5]  = 0x00;
+    out[4]  = MOVE_CONFIG;   // 0x00
     // bytes 6..7: 0x0BB8 (3000) — constant speed/rate parameter
     out[6]  = 0x0Bu;
     out[7]  = 0xB8u;
-    out[8]  = 0x00;
-    out[9]  = 0x00;
-    out[10] = 0x02u;  // constant mode byte observed in all SetMaxDegree captures
-    out[11] = 0x00;
-    out[12] = 0x00;
-    out[13] = 0x00;
+    out[10] = 0x02u;         // constant mode byte observed in SetMaxDegree captures
     // bytes 14..15: max_angle BE16
     out[14] = (unsigned char)((maxAngle >> 8) & 0xFF);
     out[15] = (unsigned char)( maxAngle       & 0xFF);
-    int rc = ioctl(m_fd, HIDIOCSFEATURE(16), out);
+    int rc = hid_send_feature_report(m_dev, out, 16);
     return (rc < 0) ? CAART_ERR_IO : CAART_OK;
-#endif
 }
 
 // ── High-level API ────────────────────────────────────────────────────────────
 
 int CAARotator::getState(State& s)
 {
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
 
-    // GET_STATE first — flushes device response buffer (PROTOCOL.md §timing note)
+    // GET_STATE first — flushes device response buffer
     unsigned char stateResp[17];
     stateResp[0] = REPORT_IN;
     int rc = cmdGetState(stateResp);
@@ -450,37 +391,33 @@ int CAARotator::getState(State& s)
 
 int CAARotator::getInfo(char* fwOut, char* typeOut, char* serialOut)
 {
-    if (m_fd < 0)
+    if (!m_dev)
         return CAART_ERR_NOLINK;
 
-    // Call GET_STATE first to flush any stale buffer from a previous slow register
+    // Flush stale buffer before slow register reads
     unsigned char stateResp[17];
     stateResp[0] = REPORT_IN;
-    cmdGetState(stateResp);  // best-effort flush; ignore error here
+    cmdGetState(stateResp);  // best-effort; ignore error
 
     // GET_INFO
     unsigned char infoResp[17];
     infoResp[0] = REPORT_IN;
-    int rc = cmdGetInfo(infoResp, NULL);
+    int rc = cmdGetInfo(infoResp);
     if (rc != CAART_OK)
         return rc;
 
     snprintf(fwOut, 16, "%d.%d.%d",
              (int)infoResp[4], (int)infoResp[5], (int)infoResp[6]);
-
-    // byte[7] is device-class byte; type string at [8..15]
-    memset(typeOut, 0, 16);
     memcpy(typeOut, infoResp + 8, 8);
     typeOut[8] = '\0';
 
-    // GET_SERIAL
-    // Flush state first (INFO is a slow register; see timing note)
+    // Flush again before GET_SERIAL (INFO is a slow register)
     stateResp[0] = REPORT_IN;
     cmdGetState(stateResp);
 
     unsigned char snResp[17];
     snResp[0] = REPORT_IN;
-    rc = querySimple(REG_SERIAL, snResp);
+    rc = cmdGetSerial(snResp);
     if (rc != CAART_OK) {
         serialOut[0] = '\0';
     } else {
@@ -492,25 +429,10 @@ int CAARotator::getInfo(char* fwOut, char* typeOut, char* serialOut)
     return CAART_OK;
 }
 
-int CAARotator::moveTo(double degrees)
-{
-    return cmdMoveTo((float)degrees);
-}
-
-int CAARotator::stop()
-{
-    return cmdStop();
-}
-
-int CAARotator::setBeep(bool enabled)
-{
-    return cmdSetBeep(enabled);
-}
-
-int CAARotator::setReverse(bool enabled)
-{
-    return cmdSetReverse(enabled);
-}
+int CAARotator::moveTo(double degrees)    { return cmdMoveTo((float)degrees); }
+int CAARotator::stop()                    { return cmdStop(); }
+int CAARotator::setBeep(bool enabled)     { return cmdSetBeep(enabled); }
+int CAARotator::setReverse(bool enabled)  { return cmdSetReverse(enabled); }
 
 int CAARotator::setMaxDegree(double degrees)
 {

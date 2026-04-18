@@ -9,6 +9,14 @@ See [PROTOCOL.md](PROTOCOL.md) for the USB HID wire protocol.
 warnings. The `UI OK.` line from the Makefile confirms the .ui file passed
 XML validation.
 
+**Runtime dependency:** hidapi (hidraw backend on Linux).
+- Linux: `sudo apt install libhidapi-hidraw0` (or `libhidapi-dev` for builds)
+- macOS: `brew install hidapi`
+- Windows (MSYS2): `pacman -S mingw-w64-x86_64-hidapi`
+
+`install.sh` checks for the runtime library and prints OS-specific install
+instructions if it is missing.
+
 ## Architecture
 
 Two-layer design:
@@ -18,9 +26,9 @@ Two-layer design:
 | Low-level HID | `caarotator.h/cpp` | Direct `/dev/hidrawN` I/O; no X2 deps |
 | X2 plugin | `x2caarotator.h/cpp` | TheSkyX interfaces; uses `CAARotator` |
 
-**`CAARotator`** — platform-isolated HID driver:
-- `findDevice()` walks `/sys/class/hidraw/` matching VID=0x03C3 PID=0x1F20
-- `open(path)` / `close()` — hidraw file descriptor management
+**`CAARotator`** — cross-platform HID driver (hidapi):
+- `enumerateDevices()` uses `hid_enumerate(VID, PID)` and briefly opens each device to read serial/firmware/type
+- `open(path)` / `close()` — `hid_open_path()` / `hid_close()`
 - `getState(s)` — calls GET_STATE then GET_STATUS2 (ZWO library open sequence: state flush first to avoid stale STATUS2 data)
 - `moveTo(deg)` / `stop()` / `setBeep()` / `setReverse()` / `setMaxDegree()`
 - On non-Linux platforms, all methods return `CAART_ERR_UNSUPPORTED`
@@ -36,8 +44,13 @@ Two-layer design:
 Goto state machine: `startRotatorGoto` → `moveTo`; `isCompleteRotatorGoto` polls
 `getState().isMoving`; `endRotatorGoto` clears `m_bDoingGoto`.
 
+**Device selection** (`chooseDevice()`):
+1. Match `DeviceSerial` against `CAADeviceEntry::serial` (preferred — stable across USB reconnects)
+2. Match `DevicePath` against `CAADeviceEntry::path` (hint — stale after replug)
+3. First available device (first-time setup / single-device case)
+
 Settings persistence: `BasicIniUtilInterface`, section `"CAARotator"`, keys
-`DevicePath`, `Beep`, `Reverse`, `MaxAngle`, `DebugLevel`.
+`DeviceSerial`, `DevicePath`, `Beep`, `Reverse`, `MaxAngle`, `DebugLevel`.
 
 ## Code rules
 

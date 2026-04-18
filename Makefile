@@ -12,24 +12,38 @@ ifneq (,$(findstring MINGW,$(UNAME_S)))
   # Windows — MSYS2 / MinGW64
   TARGET_LIB  = libx2caarotator.dll
   OS_FLAG     = -DSB_WIN_BUILD
+  # hidapi via MSYS2: pacman -S mingw-w64-x86_64-hidapi
+  HIDAPI_CFLAGS  =
+  HIDAPI_LIBS    = -lhidapi
   LDFLAGS     = -shared -static-libstdc++ -static-libgcc
   STRIP_FLAGS =
+
 else ifeq ($(UNAME_S),Darwin)
   TARGET_LIB  = libx2caarotator.dylib
   OS_FLAG     = -DSB_MACOSX_BUILD
+  # hidapi via Homebrew: brew install hidapi
+  HIDAPI_CFLAGS  = $(shell pkg-config --cflags hidapi 2>/dev/null || echo -I/opt/homebrew/include/hidapi -I/usr/local/include/hidapi)
+  HIDAPI_LIBS    = $(shell pkg-config --libs   hidapi 2>/dev/null || echo -lhidapi -framework IOKit -framework CoreFoundation)
   LDFLAGS     = -dynamiclib -lstdc++
   STRIP_FLAGS = -x
+
 else
   TARGET_LIB  = libx2caarotator.so
   OS_FLAG     = -DSB_LINUX_BUILD
+  # hidapi-hidraw (kernel driver backend, preferred for HID feature reports on Linux)
+  # Install: sudo apt install libhidapi-dev
+  HIDAPI_CFLAGS  = $(shell pkg-config --cflags hidapi-hidraw 2>/dev/null || pkg-config --cflags hidapi 2>/dev/null)
+  HIDAPI_LIBS    = $(shell pkg-config --libs   hidapi-hidraw 2>/dev/null || pkg-config --libs   hidapi 2>/dev/null || echo -lhidapi-hidraw)
   LDFLAGS     = -shared -lstdc++ -lpthread
   STRIP_FLAGS = --strip-unneeded
+
 endif
 
 CPPFLAGS = -fPIC -Wall -Wextra -O2 $(OS_FLAG) -std=gnu++11 \
            -I. -Ilicensedinterfaces \
            -DX2_FLAT_INCLUDES \
-           -DGIT_HASH=\"$(GIT_HASH)\"
+           -DGIT_HASH=\"$(GIT_HASH)\" \
+           $(HIDAPI_CFLAGS)
 
 # BUILD_NUMBER is passed from CI: make BUILD_NUMBER=42
 ifdef BUILD_NUMBER
@@ -53,7 +67,7 @@ validate_ui:
 	fi
 
 $(TARGET_LIB): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) $(LDFLAGS) -o $@ $^ $(HIDAPI_LIBS)
 	$(STRIP) $(STRIP_FLAGS) $@ >/dev/null 2>&1 || true
 
 %.o: %.cpp

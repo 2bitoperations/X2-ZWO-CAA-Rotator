@@ -3,8 +3,13 @@
 /*
  * x2caarotator.h — X2 Rotator plugin for the ZWO CAA Camera Angle Adjuster
  *
- * Implements RotatorDriverInterface using direct HID I/O (no serial port).
+ * Implements RotatorDriverInterface using hidapi for cross-platform HID I/O.
  * ModalSettingsDialogInterface / X2GUIEventInterface provide the settings dialog.
+ *
+ * Device selection (in preference order):
+ *   1. Match stored serial number (stable across USB reconnects)
+ *   2. Match stored hidapi path (hint — may change on reconnect)
+ *   3. First available CAA device
  */
 
 #include "licensedinterfaces/sberrorx.h"
@@ -23,9 +28,8 @@
 #include "caarotator.h"
 #include "version.h"
 
-#include <string>
-
 #define X2CAART_INI_SECTION  "CAARotator"
+#define X2CAART_MAX_DEVICES  8
 
 class X2CAARotator : public RotatorDriverInterface
                    , public ModalSettingsDialogInterface
@@ -97,11 +101,11 @@ private:
     // Low-level HID driver
     CAARotator  m_dev;
 
-    // Cached device info (populated in establishLink)
+    // Live device info (populated in establishLink)
     char    m_szFirmware[16];
     char    m_szType[16];
-    char    m_szSerial[24];
-    char    m_szDevPath[64];
+    char    m_szSerial[24];   // GET_SERIAL value of the open device
+    char    m_szDevPath[256]; // hidapi path of the open device
 
     // Motion state
     bool    m_bDoingGoto;
@@ -109,15 +113,27 @@ private:
     double  m_dCurrentPosition;
 
     // Persisted settings
+    char    m_szStoredSerial[24];   // preferred selector (stable across replug)
+    char    m_szStoredPath[256];    // path hint (fallback if serial not found)
     bool    m_bBeep;
     bool    m_bReverse;
     double  m_dMaxAngle;   // 180.0 or 360.0
 
-    // Settings helpers
+    // ── Device selection ──────────────────────────────────────────────────────
+
+    // Choose which device path to open using the selection strategy.
+    // Populates pathOut (size pathOutLen).  Returns CAART_OK or CAART_ERR_NODEV.
+    int  chooseDevice(char* pathOut, int pathOutLen) const;
+
+    // Build a human-readable label for one CAADeviceEntry.
+    // e.g. "CAA-M54 [SN: 060030EDA0CBFA7C]  /dev/hidraw0"
+    static void makeDeviceLabel(const CAADeviceEntry& e, char* buf, int bufLen);
+
+    // ── Settings helpers ──────────────────────────────────────────────────────
     void    loadSettings();
     void    saveSettings();
     void    applySettingsToDevice();
 
-    // Logging: only writes when m_nDebugLevel >= minLevel
+    // ── Logging ───────────────────────────────────────────────────────────────
     void    logDebug(int minLevel, const char* fmt, ...) const;
 };
