@@ -1,4 +1,20 @@
+# Build outputs
+*.o
 *.so
+*.dylib
+*.dll
+
+# Python
 .venv/
 __pycache__/
+*.pyc
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# macOS
+.DS_Store
 

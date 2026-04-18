@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>X2Rotator</class>
+ <widget class="QDialog" name="X2Rotator">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>420</width><height>360</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>ZWO CAA Rotator Setup</string>
+  </property>
+  <layout class="QVBoxLayout" name="layoutOuter">
+   <item>
+    <widget class="X2Form" name="X2Form">
+     <property name="enabled"><bool>true</bool></property>
+     <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+     <property name="frameShadow"><enum>QFrame::Raised</enum></property>
+     <layout class="QVBoxLayout" name="layoutMain">
+
+      <!-- Title -->
+      <item>
+       <widget class="QLabel" name="lblTitle">
+        <property name="text"><string>ZWO CAA Camera Angle Adjuster</string></property>
+        <property name="alignment"><set>Qt::AlignCenter</set></property>
+       </widget>
+      </item>
+
+      <!-- Device Info group -->
+      <item>
+       <widget class="QGroupBox" name="grpDevInfo">
+        <property name="title"><string>Device Info</string></property>
+        <layout class="QFormLayout" name="layoutDevInfo">
+         <item row="0" column="0">
+          <widget class="QLabel" name="lblDevPath">
+           <property name="text"><string>Device:</string></property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="lblDevPathVal">
+           <property name="text"><string>—</string></property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblType">
+           <property name="text"><string>Model:</string></property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="lblTypeVal">
+           <property name="text"><string>—</string></property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lblFirmware">
+           <property name="text"><string>Firmware:</string></property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="lblFirmwareVal">
+           <property name="text"><string>—</string></property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="lblSerial">
+           <property name="text"><string>Serial:</string></property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="lblSerialVal">
+           <property name="text"><string>—</string></property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+
+      <!-- Settings group -->
+      <item>
+       <widget class="QGroupBox" name="grpSettings">
+        <property name="title"><string>Settings</string></property>
+        <layout class="QFormLayout" name="layoutSettings">
+         <item row="0" column="0">
+          <widget class="QLabel" name="lblBeep">
+           <property name="text"><string>Beep on move:</string></property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="chkBeep">
+           <property name="text"><string/></property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblReverse">
+           <property name="text"><string>Reverse direction:</string></property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="chkReverse">
+           <property name="text"><string/></property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lblMaxAngle">
+           <property name="text"><string>Max angle:</string></property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="comboMaxAngle">
+           <item><property name="text"><string>180°</string></property></item>
+           <item><property name="text"><string>360°</string></property></item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="lblDebug">
+           <property name="text"><string>Debug level:</string></property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="comboDebug">
+           <item><property name="text"><string>Off</string></property></item>
+           <item><property name="text"><string>Errors</string></property></item>
+           <item><property name="text"><string>Commands</string></property></item>
+           <item><property name="text"><string>Full I/O</string></property></item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+
+      <!-- Vertical spacer -->
+      <item>
+       <spacer name="vertSpacer">
+        <property name="orientation"><enum>Qt::Vertical</enum></property>
+        <property name="sizeHint" stdset="0"><size><width>20</width><height>8</height></size></property>
+       </spacer>
+      </item>
+
+      <!-- OK / Cancel buttons -->
+      <item>
+       <layout class="QHBoxLayout" name="layoutButtons">
+        <item>
+         <spacer name="horzSpacer">
+          <property name="orientation"><enum>Qt::Horizontal</enum></property>
+          <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonOK">
+          <property name="text"><string>OK</string></property>
+          <property name="default"><bool>true</bool></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonCancel">
+          <property name="text"><string>Cancel</string></property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>X2Form</class>
+   <extends>QFrame</extends>
+   <header>x2guiinterface.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,10 @@
+# udev rule for ZWO CAA Camera Angle Adjuster
+# VID=0x03C3  PID=0x1F20
+#
+# Install: sudo cp 99-zwocaa.rules /etc/udev/rules.d/
+#          sudo udevadm control --reload-rules && sudo udevadm trigger
+#
+# Or: make udev-install
+
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03c3", ATTRS{idProduct}=="1f20", \
+    TAG+="uaccess", MODE="0660", GROUP="plugdev"

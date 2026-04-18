@@ -1,0 +1,1 @@
+1|ZWO|CAA Rotator|ZWO CAA Camera Angle Adjuster| |x2caarotator
