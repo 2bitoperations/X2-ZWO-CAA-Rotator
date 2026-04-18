@@ -13,7 +13,7 @@
  *   Register byte  : buf[3] in output; echoed in buf[3] of input
  */
 
-#include <hidapi/hidapi.h>
+#include <hidapi.h>
 
 // ── Error codes ───────────────────────────────────────────────────────────────
 #define CAART_OK           0
